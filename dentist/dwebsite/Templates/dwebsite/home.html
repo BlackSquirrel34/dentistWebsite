@@ -33,7 +33,23 @@
       </div>
     </section>
 
-    <section class="ftco-intro">
+
+
+ {% if app_name %} <!-- which means: the form was filled out -->
+<section class="ftco-section ftco-services">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <h2 class="mb-2">Thank you {{ app_name }}</h2>
+            <p>You requested an appointment on {{ app_date }} at {{ app_time }}.</p>
+      		<p>We received your email and will respond shortly.</p>
+          </div>
+        </div>
+	  </div>
+</section>
+{% else %}
+
+ <section class="ftco-intro">
     	<div class="container">
     		<div class="row no-gutters">
     			<div class="col-md-3 color-1 p-4">
@@ -56,15 +72,19 @@
     					<span>10:00 - 16:00</span>
     				</p>
     			</div>
+
+
+<!-- Appointment Form -->
     			<div class="col-md-6 color-3 p-4">
     				<h3 class="mb-2">Make an Appointment</h3>
-    				<form action="#" class="appointment-form">
+    				<form action="{% url 'home' %}" method="post" class="appointment-form">
+						 {% csrf_token %}
 	            <div class="row">
 	            	<div class="col-sm-4">
 	                <div class="form-group">
 			              <div class="select-wrap">
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                      <select name="" id="" class="form-control">
+                      <select name="app-department" id="appointment" class="form-control">
                       	<option value="">Department</option>
                         <option value="">Teeth Whitening</option>
                         <option value="">Teeth CLeaning</option>
@@ -77,13 +97,13 @@
 	              <div class="col-sm-4">
 	                <div class="form-group">
 	                	<div class="icon"><span class="icon-user"></span></div>
-			              <input type="text" class="form-control" id="appointment_name" placeholder="Name">
+			              <input type="text" name="app-name" class="form-control" id="appointment_name" placeholder="Name">
 			            </div>
 	              </div>
 	              <div class="col-sm-4">
 	                <div class="form-group">
 	                	<div class="icon"><span class="icon-paper-plane"></span></div>
-			              <input type="text" class="form-control" id="appointment_email" placeholder="Email">
+			              <input type="text" name="app-email" class="form-control" id="appointment_email" placeholder="Email">
 			            </div>
 	              </div>
 	            </div>
@@ -91,19 +111,19 @@
 	              <div class="col-sm-4">
 	                <div class="form-group">
 	                	<div class="icon"><span class="ion-ios-calendar"></span></div>
-	                  <input type="text" class="form-control appointment_date" placeholder="Date">
+	                  <input type="text" name="app-date" class="form-control appointment_date" placeholder="Date">
 	                </div>
 	              </div>
 	              <div class="col-sm-4">
 	                <div class="form-group">
 	                	<div class="icon"><span class="ion-ios-clock"></span></div>
-	                  <input type="text" class="form-control appointment_time" placeholder="Time">
+	                  <input type="text" name="app-time" class="form-control appointment_time" placeholder="Time">
 	                </div>
 	              </div>
 	              <div class="col-sm-4">
 	                <div class="form-group">
 	                	<div class="icon"><span class="icon-phone2"></span></div>
-	                  <input type="text" class="form-control" id="phone" placeholder="Phone">
+	                  <input type="text" name="app-phone" class="form-control" id="phone" placeholder="Phone">
 	                </div>
 	              </div>
 	            </div>
@@ -117,7 +137,8 @@
     	</div>
     </section>
 
-    <section class="ftco-section ftco-services">
+
+<section class="ftco-section ftco-services">
       <div class="container">
       	<div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
@@ -431,6 +452,10 @@
         </div>
     	</div>
     </section>
+
+
+{% endif %}
+
 
     <section class="ftco-section-parallax">
       <div class="parallax-img d-flex align-items-center">

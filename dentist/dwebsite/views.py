@@ -3,10 +3,27 @@ from django.core.mail import send_mail
 
 # Create your views here.
 def home(request):
-    return render(request, 'dwebsite/home.html', {})
+    if request.method == "POST":
+        app_department = request.POST['app-department']
+        app_name = request.POST['app-name']
+        app_email = request.POST['app-email']
+        app_date = request.POST['app-date']
+        app_time = request.POST['app-time']
+        app_phone = request.POST['app-phone']
 
-def about(request):
-    return render(request, 'dwebsite/about.html', {})
+        # send an email to the dentist
+        send_mail(
+            'Appointment request  from ' + app_name, # subject
+            'Requested date: ' + app_date + ' ' + 'requested time: ' + app_time + ' ' + 'Phone number: ' + app_phone, # message
+            app_email, # from email
+            ['dentist@gmail.com'], # To Email. dummy email!
+        )
+
+        return render(request, 'dwebsite/home.html', {'app_name': app_name, 'app_date': app_date, 'app_time':app_time})
+
+    else:
+        return render(request, 'dwebsite/home.html', {})
+
 
 def services(request):
     return render(request, 'dwebsite/services.html', {})
@@ -16,6 +33,10 @@ def doctors(request):
 
 def blog(request):
     return render(request, 'dwebsite/blog.html', {})
+
+def about(request):
+    return render(request, 'dwebsite/about.html', {})
+
 
 def contact(request):
     if request.method == "POST":
