@@ -121,7 +121,6 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-os.path.join(BASE_DIR, 'dentist/static'),  # Adjust the path to your static folder
     os.path.join(BASE_DIR, 'dwebsite/Templates/dwebsite'),
 ]
 
@@ -131,3 +130,34 @@ os.path.join(BASE_DIR, 'dentist/static'),  # Adjust the path to your static fold
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# test method for sending email: pythons own sendmail server
+
+# Email Settings
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '1025' # different than 8000
+EMAIL_HOST_USER = '<EMAIL>' # put this in OS environ
+EMAIL_HOST_PASSWORD = '' # put this in OS environ
+EMAIL_USE_TLS = False # set True for production
+# EMAIL_USE_SSL = False # same
+
+# for firing up this mini-mailserver, open a fresh terminal:
+# inside the virtual environment, go to manage.py level
+# python -m smtpd -n -c DebuggingServer localhost:1025
+
+
+# In production this will depend on the website owners mail provider.
+# Google "send_email with <mailprovider>" and find out
+# you need information on host and port etc.
+# as well as website owners mail address and (!!) password to stuff in os environ variable
+
+
+# Example gmail:
+# by default gmail does not allow third party apps send email.
+# with setting "allow less secure apps" this worked in earlier times.
+
+# better way: create a specific app at google and give it a specific password.
+# so you needn't involve your google password
+# but for this you need 2FA enabled
+
