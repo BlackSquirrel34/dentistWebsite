@@ -5,6 +5,18 @@ from django.core.mail import send_mail
 def home(request):
     return render(request, 'dwebsite/home.html', {})
 
+def about(request):
+    return render(request, 'dwebsite/about.html', {})
+
+def services(request):
+    return render(request, 'dwebsite/services.html', {})
+
+def doctors(request):
+    return render(request, 'dwebsite/doctors.html', {})
+
+def blog(request):
+    return render(request, 'dwebsite/blog.html', {})
+
 def contact(request):
     if request.method == "POST":
         msg_name = request.POST['name']
@@ -17,7 +29,7 @@ def contact(request):
             'message from ' + msg_name + ' ' + msg_subject, # subject
             msg_message, # message
             msg_email, # from email
-            ['dentist@gmail-com'], # To Email. dummy email!
+            ['dentist@gmail.com'], # To Email. dummy email!
         )
 
 

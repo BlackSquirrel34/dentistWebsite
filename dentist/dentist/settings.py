@@ -56,7 +56,7 @@ ROOT_URLCONF = "dentist.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'dwebsite', 'Templates')],  # Updated path
+        "DIRS": [os.path.join(BASE_DIR, 'Templates')],  # Updated path
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Email Settings
 EMAIL_HOST = 'localhost'
-EMAIL_PORT = '1025' # different than 8000
+EMAIL_PORT = 1025 # different than 8000
 EMAIL_HOST_USER = '<EMAIL>' # put this in OS environ
 EMAIL_HOST_PASSWORD = '' # put this in OS environ
 EMAIL_USE_TLS = False # set True for production
